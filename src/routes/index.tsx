@@ -432,7 +432,7 @@ function LeadMagnet() {
               <h2 className="mt-2 text-3xl text-foreground md:text-4xl">Les 7 erreurs qui empêchent votre entreprise d'être visible localement</h2>
               <p className="mt-4 text-muted-foreground">Téléchargez gratuitement le guide pour identifier ce qui freine votre visibilité — et comment y remédier.</p>
               <div className="mt-5 flex items-center gap-2 text-sm text-foreground/70">
-                <Download className="h-4 w-4 text-[color:var(--primary)]" /> PDF · 12 pages · gratuit
+                <Download className="h-4 w-4 text-[color:var(--primary)]" /> Guide gratuit à télécharger
               </div>
             </div>
             <form
