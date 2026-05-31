@@ -121,7 +121,7 @@ function PourQui() {
     <section id="pour-qui" className="py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Pour qui ?</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Pour qui ?</span>
           <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Un accompagnement pensé pour les acteurs locaux</h2>
           <p className="mt-4 text-muted-foreground">
             Que vous soyez commerçant, artisan, thérapeute, restaurateur, indépendant ou dirigeant d'une petite entreprise locale, votre visibilité est un levier essentiel de développement.
@@ -178,7 +178,7 @@ function Services() {
     <section id="services" className="bg-[color:var(--cream)] py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Mes services</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Mes services</span>
           <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Trois leviers pour faire grandir votre activité</h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -214,7 +214,7 @@ function Resultats() {
     <section id="resultats" className="py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:px-8">
         <div>
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Visibilité & résultats</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Visibilité & résultats</span>
           <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">La visibilité n'est pas une question de hasard.</h2>
           <p className="mt-5 text-muted-foreground">
             Chaque activité est différente. Les résultats dépendent de votre marché, de votre présence actuelle et des actions mises en place.
@@ -246,7 +246,7 @@ function Performance() {
     <section className="bg-[image:var(--gradient-soft)] py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Performance</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Performance</span>
           <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Piloter pour mieux progresser</h2>
           <p className="mt-4 text-muted-foreground">Un suivi clair, lisible, conçu même pour celles et ceux qui ne maîtrisent pas le marketing digital.</p>
         </div>
@@ -285,7 +285,7 @@ function CreationSite() {
           <img src={systemeLovable} alt="Création de sites internet & tunnels de vente" className="relative w-full rounded-3xl border border-border shadow-[var(--shadow-soft)]" />
         </div>
         <div className="order-1 lg:order-2">
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Sites & tunnels</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Sites & tunnels</span>
           <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Transformez votre visibilité en opportunités.</h2>
           <div className="mt-6 grid grid-cols-2 gap-2">
             {["Sites internet", "Lovable", "Systeme.io", "Landing pages", "Tunnels de vente", "Automatisations", "Formulaires", "WhatsApp Business"].map((t) => (
@@ -313,7 +313,7 @@ function GoogleBusiness() {
     <section className="bg-[color:var(--cream)] py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Google Business Profile</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Google Business Profile</span>
           <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Développez votre visibilité locale sur Google.</h2>
         </div>
         <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-[color:var(--turquoise)]/40 bg-card p-6 shadow-[var(--shadow-soft)] md:p-8">
@@ -353,7 +353,7 @@ function QuiSuisJe() {
           <img src={cathGarden} alt="Catherine, Cath & You" className="relative aspect-[4/5] w-full rounded-[2rem] object-cover shadow-[var(--shadow-soft)]" />
         </div>
         <div>
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Qui suis-je</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Qui suis-je</span>
           <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Bonjour, moi c'est Catherine.</h2>
           <div className="mt-6 space-y-4 text-foreground/80">
             <p>
@@ -399,7 +399,7 @@ function Temoignages() {
     <section className="bg-[image:var(--gradient-soft)] py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Cas d'usage</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Cas d'usage</span>
           <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Des accompagnements concrets, adaptés à chaque activité</h2>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -428,7 +428,7 @@ function LeadMagnet() {
           <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[color:var(--turquoise)] opacity-30 blur-3xl" />
           <div className="relative grid items-center gap-10 md:grid-cols-2">
             <div>
-              <span className="font-script text-2xl text-[color:var(--turquoise)]">Guide offert</span>
+              <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Guide offert</span>
               <h2 className="mt-2 text-3xl text-foreground md:text-4xl">Les 7 erreurs qui empêchent votre entreprise d'être visible localement</h2>
               <p className="mt-4 text-muted-foreground">Téléchargez gratuitement le guide pour identifier ce qui freine votre visibilité — et comment y remédier.</p>
               <div className="mt-5 flex items-center gap-2 text-sm text-foreground/70">
@@ -480,7 +480,7 @@ function FAQ() {
     <section className="bg-[color:var(--cream)] py-24">
       <div className="mx-auto max-w-3xl px-5 lg:px-8">
         <div className="text-center">
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">FAQ</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">FAQ</span>
           <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Vos questions, mes réponses</h2>
         </div>
         <div className="mt-10 space-y-3">
@@ -509,7 +509,7 @@ function Contact() {
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2">
           <div>
-            <span className="font-script text-2xl text-[color:var(--turquoise)]">Contact</span>
+            <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Contact</span>
             <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Discutons de votre projet.</h2>
             <p className="mt-4 text-muted-foreground">Un échange simple pour comprendre votre activité, vos objectifs, et identifier ensemble les bonnes actions.</p>
             <div className="mt-8 space-y-4">
@@ -572,7 +572,7 @@ function Footer() {
         <div>
           <div className="flex items-baseline gap-1.5">
             <span className="font-display text-2xl font-semibold">Cath</span>
-            <span className="font-script text-2xl text-[color:var(--turquoise)]">& you</span>
+            <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">& you</span>
           </div>
           <p className="mt-3 text-sm text-background/70">
             Visibilité locale · Google Business · Réseaux sociaux · Publicité digitale · Sites internet · Tunnels de vente.
