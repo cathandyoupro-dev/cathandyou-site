@@ -24,7 +24,7 @@ export function Diagnostic() {
     <section id="diagnostic" className="bg-[color:var(--cream)] py-24">
       <div className="mx-auto max-w-3xl px-5 lg:px-8">
         <div className="mb-10 text-center">
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Offert</span>
+          <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Offert</span>
           <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Recevez votre mini diagnostic visibilité gratuit</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Découvrez les points forts et les axes d'amélioration de votre présence digitale.
@@ -103,9 +103,9 @@ function Input({ label, ...props }: { label: string } & React.InputHTMLAttribute
 const OBJECTIFS = [
   "Plus de visibilité",
   "Plus de clients",
-  "Améliorer ma fiche Google",
+  "Améliorer ma fiche Google Business Profile",
   "Créer un site internet",
-  "Lancer de la publicité",
+  "Lancer de la publicité digitale",
 ];
 
 const OUTILS = ["Facebook", "Instagram", "Google Business Profile", "Site internet", "Aucun"];
