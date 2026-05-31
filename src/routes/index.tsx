@@ -122,10 +122,14 @@ function PourQui() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Pour qui ?</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Un accompagnement pensé pour les acteurs locaux</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Un accompagnement pensé pour les acteurs locaux</h2>
           <p className="mt-4 text-muted-foreground">
-            Quelle que soit votre activité, si votre développement dépend de votre visibilité locale, Cath & You peut vous accompagner.
+            Que vous soyez commerçant, artisan, thérapeute, restaurateur, indépendant ou dirigeant d'une petite entreprise locale, votre visibilité est un levier essentiel de développement.
           </p>
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[color:var(--turquoise)]/40 bg-[color:var(--cream)] px-4 py-2 text-sm font-medium text-foreground shadow-sm">
+            <MapPin className="h-4 w-4 text-[color:var(--turquoise)]" />
+            Roquebrune-sur-Argens & alentours · Var
+          </div>
         </div>
         <div className="mt-12 flex flex-wrap justify-center gap-3">
           {audiences.map((a) => (
