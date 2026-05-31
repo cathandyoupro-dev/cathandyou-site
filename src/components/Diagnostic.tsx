@@ -99,3 +99,107 @@ function Input({ label, ...props }: { label: string } & React.InputHTMLAttribute
     </label>
   );
 }
+
+const OBJECTIFS = [
+  "Plus de visibilité",
+  "Plus de clients",
+  "Améliorer ma fiche Google",
+  "Créer un site internet",
+  "Lancer de la publicité",
+];
+
+const OUTILS = ["Facebook", "Instagram", "Google Business Profile", "Site internet", "Aucun"];
+
+function PreForm({ onSubmit }: { onSubmit: () => void }) {
+  const [objectif, setObjectif] = useState<string>("");
+  const [outils, setOutils] = useState<string[]>([]);
+
+  const toggleOutil = (o: string) =>
+    setOutils((prev) => (prev.includes(o) ? prev.filter((x) => x !== o) : [...prev, o]));
+
+  return (
+    <form
+      className="grid gap-4 md:grid-cols-2"
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit();
+      }}
+    >
+      <Input label="Prénom" name="prenom" required />
+      <Input label="Nom" name="nom" required />
+      <Input label="Email" name="email" type="email" required />
+      <Input label="Téléphone" name="tel" type="tel" required />
+      <div className="md:col-span-2">
+        <Input label="Activité professionnelle" name="activite" required />
+      </div>
+
+      <div className="md:col-span-2">
+        <span className="text-sm font-medium text-foreground">Quel est votre principal objectif ?</span>
+        <div className="mt-2 grid gap-2 sm:grid-cols-2">
+          {OBJECTIFS.map((o) => (
+            <label
+              key={o}
+              className={`flex cursor-pointer items-center gap-2.5 rounded-xl border px-3 py-2.5 text-sm transition-all ${
+                objectif === o
+                  ? "border-[color:var(--turquoise)] bg-[image:var(--gradient-soft)] text-foreground"
+                  : "border-border bg-background text-foreground/80 hover:border-[color:var(--turquoise)]/50"
+              }`}
+            >
+              <input
+                type="radio"
+                name="objectif"
+                value={o}
+                checked={objectif === o}
+                onChange={() => setObjectif(o)}
+                required
+                className="sr-only"
+              />
+              <span
+                className={`flex h-4 w-4 items-center justify-center rounded-full border ${
+                  objectif === o ? "border-[color:var(--turquoise)] bg-[color:var(--turquoise)]" : "border-border"
+                }`}
+              >
+                {objectif === o && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
+              </span>
+              {o}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="md:col-span-2">
+        <span className="text-sm font-medium text-foreground">Quels outils utilisez-vous actuellement ?</span>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {OUTILS.map((o) => {
+            const active = outils.includes(o);
+            return (
+              <label
+                key={o}
+                className={`flex cursor-pointer items-center gap-2 rounded-full border px-3.5 py-2 text-sm transition-all ${
+                  active
+                    ? "border-[color:var(--turquoise)] bg-[color:var(--turquoise)] text-white"
+                    : "border-border bg-background text-foreground/80 hover:border-[color:var(--turquoise)]/50"
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  checked={active}
+                  onChange={() => toggleOutil(o)}
+                  className="sr-only"
+                />
+                {active && <Check className="h-3.5 w-3.5" />}
+                {o}
+              </label>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="md:col-span-2 flex justify-center pt-2">
+        <button type="submit" className="rounded-full bg-[image:var(--gradient-primary)] px-8 py-3.5 font-medium text-white shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-0.5">
+          Commencer le diagnostic
+        </button>
+      </div>
+    </form>
+  );
+}
