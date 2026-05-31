@@ -580,7 +580,7 @@ function Footer() {
         <div className="text-sm text-background/80">
           <div className="font-medium text-background">Zone d'intervention</div>
           <p className="mt-2">Roquebrune-sur-Argens & Var</p>
-          <p className="mt-3">06 35 26 44 92<br />contact@cathandyou.fr</p>
+          <p className="mt-3">06 35 26 44 92<br /><a href="mailto:cathandyou.pro@gmail.com" className="hover:text-background break-all">cathandyou.pro@gmail.com</a></p>
         </div>
         <div className="flex md:justify-end">
           <a
