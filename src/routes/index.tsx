@@ -594,9 +594,20 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-background/10">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 text-xs text-background/60 lg:px-8">
-          <span>© {new Date().getFullYear()} Cath & You — Tous droits réservés.</span>
-          <span className="flex items-center gap-1"><Facebook className="h-3.5 w-3.5" /><Instagram className="h-3.5 w-3.5" /></span>
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-5 text-xs text-background/60 md:flex-row md:items-center md:justify-between lg:px-8">
+          <span>© 2026 Cath & You — Tous droits réservés.</span>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <a href="https://app.notion.com/p/Mentions-L-gales-Cath-and-You-2fbe6c6bd165800e8325e416cbb7b5b3?source=copy_link" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-background">Mentions légales</a>
+            <a href="https://app.notion.com/p/Politique-de-confidentialit-Cath-and-You-2ede6c6bd1658009b089e4898bf30503?source=copy_link" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-background">Politique de confidentialité</a>
+            <button
+              type="button"
+              onClick={() => alert("Préférences cookies : aucun cookie tiers n'est utilisé sur ce site. Vous pouvez gérer le suivi via les paramètres de votre navigateur.")}
+              className="transition-colors hover:text-background"
+            >
+              Gestion des cookies
+            </button>
+            <span className="flex items-center gap-2 text-background/50"><Facebook className="h-3.5 w-3.5" /><Instagram className="h-3.5 w-3.5" /></span>
+          </div>
         </div>
       </div>
     </footer>
