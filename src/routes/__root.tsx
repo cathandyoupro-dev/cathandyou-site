@@ -77,9 +77,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Cath & You — Visibilité locale dans le Var" },
-      { name: "description", content: "Accompagnement digital pour entreprises locales du Var : réseaux sociaux, Google Business, Meta Ads, sites internet et tunnels de vente." },
+      { title: "Cath & You | Visibilité locale & marketing digital Var" },
+      { name: "description", content: "J'aide les entreprises locales du Var à gagner en visibilité grâce aux réseaux sociaux, Google Business, Meta Ads et sites internet." },
       { property: "og:type", content: "website" },
+      { property: "og:title", content: "Cath & You | Visibilité locale & marketing digital Var" },
+      { name: "twitter:title", content: "Cath & You | Visibilité locale & marketing digital Var" },
+      { property: "og:description", content: "J'aide les entreprises locales du Var à gagner en visibilité grâce aux réseaux sociaux, Google Business, Meta Ads et sites internet." },
+      { name: "twitter:description", content: "J'aide les entreprises locales du Var à gagner en visibilité grâce aux réseaux sociaux, Google Business, Meta Ads et sites internet." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/BFDlXEOyi9ZZnqMONLxYHtSss1U2/social-images/social-1780222181422-cath_1.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/BFDlXEOyi9ZZnqMONLxYHtSss1U2/social-images/social-1780222181422-cath_1.webp" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
