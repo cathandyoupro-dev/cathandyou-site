@@ -354,16 +354,16 @@ function QuiSuisJe() {
         </div>
         <div>
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Qui suis-je</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Bonjour, moi c'est Catherine.</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Bonjour, moi c'est Catherine.</h2>
           <div className="mt-6 space-y-4 text-foreground/80">
             <p>
-              Habitante de Roquebrune-sur-Argens, maman entrepreneuse, issue du domaine du droit et du recouvrement judiciaire, j'ai choisi de mettre mon sens de l'organisation, du contact humain et de l'analyse au service des entreprises locales.
+              Habitante de Roquebrune-sur-Argens, maman entrepreneuse et passionnée par le digital, j'accompagne les entreprises locales qui souhaitent développer leur visibilité et leur présence en ligne.
             </p>
             <p>
-              Passionnée par le digital, la communication et la visibilité en ligne, j'accompagne aujourd'hui les professionnels du Var qui souhaitent développer leur présence digitale, gagner en visibilité et attirer davantage de clients.
+              Issue du domaine du droit et du recouvrement judiciaire, j'ai choisi de mettre mon sens de l'organisation, de l'analyse et du contact humain au service des entrepreneurs locaux.
             </p>
             <p>
-              Mon approche est simple : être proche du terrain, comprendre votre activité et mettre en place des solutions concrètes adaptées à vos objectifs.
+              Mon objectif est simple : <strong className="text-foreground">vous aider à être visible, crédible et trouvé par vos futurs clients.</strong>
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
