@@ -55,21 +55,25 @@ function Hero() {
       <div className="absolute inset-0 bg-[image:var(--gradient-hero)] opacity-70" />
       <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-[color:var(--turquoise)] opacity-30 blur-3xl" />
       <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-[color:var(--lavender)] opacity-40 blur-3xl" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--turquoise)]/60 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.5),transparent_60%)]" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:px-8 lg:py-28">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-4 py-1.5 backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-1.5 shadow-sm backdrop-blur">
             <MapPin className="h-3.5 w-3.5 text-[color:var(--turquoise)]" />
             <span className="text-xs font-medium text-foreground">Roquebrune-sur-Argens · Var</span>
           </div>
-          <h1 className="mt-6 text-4xl leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
-            Développez votre <span className="italic text-[color:var(--primary)]">visibilité locale</span> grâce à une présence digitale moderne et efficace.
+          <h1 className="mt-6 text-[2.6rem] leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            Votre entreprise mérite <span className="italic text-[color:var(--primary)]">d'être vue.</span>
           </h1>
-          <p className="mt-5 text-base text-muted-foreground sm:text-lg">
-            Réseaux sociaux · Google Business · Publicités Meta Ads · Création de sites internet · Tunnels de vente
+          <p className="mt-6 max-w-xl text-base text-foreground/80 sm:text-lg">
+            J'accompagne les entreprises locales du Var à développer leur visibilité grâce aux réseaux sociaux, Google Business Profile, la publicité digitale et la création de sites internet.
           </p>
-          <p className="mt-5 max-w-xl text-foreground/80">
-            J'accompagne les entreprises locales du Var dans le développement de leur visibilité, de leur présence digitale et de leur acquisition clients.
-          </p>
+          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-foreground/90">
+            <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-[color:var(--turquoise)]" /> Plus de visibilité</li>
+            <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-[color:var(--turquoise)]" /> Plus de crédibilité</li>
+            <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-[color:var(--turquoise)]" /> Plus d'opportunités</li>
+          </ul>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#services" className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-6 py-3.5 font-medium text-white shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-0.5">
               Découvrir mes services <ArrowRight className="h-4 w-4" />
@@ -82,8 +86,9 @@ function Hero() {
         </div>
         <div className="relative">
           <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[color:var(--turquoise)]/40 to-[color:var(--rose)]/40 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/60 shadow-[var(--shadow-glow)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/60 shadow-[var(--shadow-glow)] ring-1 ring-white/40">
             <img src={cathHero} alt="Catherine, fondatrice de Cath & You" className="aspect-[4/5] w-full object-cover" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10" />
           </div>
           <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-border bg-card px-5 py-4 shadow-[var(--shadow-soft)] sm:block">
             <div className="flex items-center gap-3">
