@@ -103,9 +103,9 @@ function Input({ label, ...props }: { label: string } & React.InputHTMLAttribute
 const OBJECTIFS = [
   "Plus de visibilité",
   "Plus de clients",
-  "Améliorer ma fiche Google",
+  "Améliorer ma fiche Google Business Profile",
   "Créer un site internet",
-  "Lancer de la publicité",
+  "Lancer de la publicité digitale",
 ];
 
 const OUTILS = ["Facebook", "Instagram", "Google Business Profile", "Site internet", "Aucun"];
