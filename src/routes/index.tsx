@@ -55,21 +55,25 @@ function Hero() {
       <div className="absolute inset-0 bg-[image:var(--gradient-hero)] opacity-70" />
       <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-[color:var(--turquoise)] opacity-30 blur-3xl" />
       <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-[color:var(--lavender)] opacity-40 blur-3xl" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[color:var(--turquoise)]/60 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.5),transparent_60%)]" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:px-8 lg:py-28">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-4 py-1.5 backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-1.5 shadow-sm backdrop-blur">
             <MapPin className="h-3.5 w-3.5 text-[color:var(--turquoise)]" />
             <span className="text-xs font-medium text-foreground">Roquebrune-sur-Argens · Var</span>
           </div>
-          <h1 className="mt-6 text-4xl leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
-            Développez votre <span className="italic text-[color:var(--primary)]">visibilité locale</span> grâce à une présence digitale moderne et efficace.
+          <h1 className="mt-6 text-[2.6rem] leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            Votre entreprise mérite <span className="italic text-[color:var(--primary)]">d'être vue.</span>
           </h1>
-          <p className="mt-5 text-base text-muted-foreground sm:text-lg">
-            Réseaux sociaux · Google Business · Publicités Meta Ads · Création de sites internet · Tunnels de vente
+          <p className="mt-6 max-w-xl text-base text-foreground/80 sm:text-lg">
+            J'accompagne les entreprises locales du Var à développer leur visibilité grâce aux réseaux sociaux, Google Business Profile, la publicité digitale et la création de sites internet.
           </p>
-          <p className="mt-5 max-w-xl text-foreground/80">
-            J'accompagne les entreprises locales du Var dans le développement de leur visibilité, de leur présence digitale et de leur acquisition clients.
-          </p>
+          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-foreground/90">
+            <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-[color:var(--turquoise)]" /> Plus de visibilité</li>
+            <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-[color:var(--turquoise)]" /> Plus de crédibilité</li>
+            <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-[color:var(--turquoise)]" /> Plus d'opportunités</li>
+          </ul>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#services" className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-6 py-3.5 font-medium text-white shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-0.5">
               Découvrir mes services <ArrowRight className="h-4 w-4" />
@@ -82,8 +86,9 @@ function Hero() {
         </div>
         <div className="relative">
           <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[color:var(--turquoise)]/40 to-[color:var(--rose)]/40 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/60 shadow-[var(--shadow-glow)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/60 shadow-[var(--shadow-glow)] ring-1 ring-white/40">
             <img src={cathHero} alt="Catherine, fondatrice de Cath & You" className="aspect-[4/5] w-full object-cover" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10" />
           </div>
           <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-border bg-card px-5 py-4 shadow-[var(--shadow-soft)] sm:block">
             <div className="flex items-center gap-3">
@@ -117,10 +122,14 @@ function PourQui() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Pour qui ?</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Un accompagnement pensé pour les acteurs locaux</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Un accompagnement pensé pour les acteurs locaux</h2>
           <p className="mt-4 text-muted-foreground">
-            Quelle que soit votre activité, si votre développement dépend de votre visibilité locale, Cath & You peut vous accompagner.
+            Que vous soyez commerçant, artisan, thérapeute, restaurateur, indépendant ou dirigeant d'une petite entreprise locale, votre visibilité est un levier essentiel de développement.
           </p>
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[color:var(--turquoise)]/40 bg-[color:var(--cream)] px-4 py-2 text-sm font-medium text-foreground shadow-sm">
+            <MapPin className="h-4 w-4 text-[color:var(--turquoise)]" />
+            Roquebrune-sur-Argens & alentours · Var
+          </div>
         </div>
         <div className="mt-12 flex flex-wrap justify-center gap-3">
           {audiences.map((a) => (
@@ -142,7 +151,7 @@ const services = [
     icon: Instagram,
     tag: "Service 01",
     title: "Community Management",
-    desc: "Développez votre visibilité grâce à une présence régulière et cohérente sur les réseaux sociaux.",
+    desc: "Développez votre présence digitale grâce à des contenus réguliers et cohérents.",
     bullets: ["Instagram, Facebook, TikTok", "Google Business Profile", "Calendrier éditorial", "Création de contenus, posts & réels"],
     gradient: "from-[color:var(--rose)]/40 to-[color:var(--lavender)]/40",
   },
@@ -150,7 +159,7 @@ const services = [
     icon: Target,
     tag: "Service 02",
     title: "Traffic Manager IA & Media Buyer",
-    desc: "Transformez votre visibilité en prospects qualifiés grâce à la publicité digitale.",
+    desc: "Transformez votre visibilité en demandes de contact qualifiées.",
     bullets: ["Meta Ads & Google Ads", "Notoriété & génération de leads", "Retargeting", "Analyse KPI & optimisation"],
     gradient: "from-[color:var(--turquoise)]/40 to-[color:var(--lavender)]/40",
   },
@@ -158,7 +167,7 @@ const services = [
     icon: Globe,
     tag: "Service 03",
     title: "Sites internet & Tunnels de vente",
-    desc: "Créez un système digital capable de présenter votre activité et de générer des demandes de contact.",
+    desc: "Disposez d'un outil capable de présenter votre activité et générer des opportunités 24h/24.",
     bullets: ["Lovable & Systeme.io", "Landing pages & tunnels", "Automatisations & formulaires", "WhatsApp Business"],
     gradient: "from-[color:var(--lavender)]/40 to-[color:var(--rose)]/40",
   },
@@ -170,7 +179,7 @@ function Services() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Mes services</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Trois leviers pour faire grandir votre activité</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Trois leviers pour faire grandir votre activité</h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {services.map((s) => (
@@ -206,7 +215,7 @@ function Resultats() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:px-8">
         <div>
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Visibilité & résultats</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">La visibilité n'est pas une question de hasard.</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">La visibilité n'est pas une question de hasard.</h2>
           <p className="mt-5 text-muted-foreground">
             Chaque activité est différente. Les résultats dépendent de votre marché, de votre présence actuelle et des actions mises en place.
           </p>
@@ -238,7 +247,7 @@ function Performance() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Performance</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Piloter pour mieux progresser</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Piloter pour mieux progresser</h2>
           <p className="mt-4 text-muted-foreground">Un suivi clair, lisible, conçu même pour celles et ceux qui ne maîtrisent pas le marketing digital.</p>
         </div>
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_1.3fr]">
@@ -277,7 +286,7 @@ function CreationSite() {
         </div>
         <div className="order-1 lg:order-2">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Sites & tunnels</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Transformez votre visibilité en opportunités.</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Transformez votre visibilité en opportunités.</h2>
           <div className="mt-6 grid grid-cols-2 gap-2">
             {["Sites internet", "Lovable", "Systeme.io", "Landing pages", "Tunnels de vente", "Automatisations", "Formulaires", "WhatsApp Business"].map((t) => (
               <div key={t} className="flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2.5 text-sm">
@@ -305,9 +314,22 @@ function GoogleBusiness() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Google Business Profile</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Développez votre visibilité locale sur Google.</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Développez votre visibilité locale sur Google.</h2>
         </div>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-[color:var(--turquoise)]/40 bg-card p-6 shadow-[var(--shadow-soft)] md:p-8">
+          <div className="flex items-start gap-4">
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[image:var(--gradient-primary)] text-white">
+              <Sparkles className="h-5 w-5" />
+            </div>
+            <div>
+              <h3 className="text-xl text-foreground">Pourquoi Google Business est indispensable ?</h3>
+              <p className="mt-2 text-sm text-foreground/80">
+                Parce que vos futurs clients recherchent déjà vos services sur Google. Une fiche optimisée augmente votre visibilité locale et facilite les prises de contact.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((i) => (
             <div key={i.t} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
               <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
@@ -332,16 +354,16 @@ function QuiSuisJe() {
         </div>
         <div>
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Qui suis-je</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Bonjour, moi c'est Catherine.</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Bonjour, moi c'est Catherine.</h2>
           <div className="mt-6 space-y-4 text-foreground/80">
             <p>
-              Habitante de Roquebrune-sur-Argens, maman entrepreneuse, issue du domaine du droit et du recouvrement judiciaire, j'ai choisi de mettre mon sens de l'organisation, du contact humain et de l'analyse au service des entreprises locales.
+              Habitante de Roquebrune-sur-Argens, maman entrepreneuse et passionnée par le digital, j'accompagne les entreprises locales qui souhaitent développer leur visibilité et leur présence en ligne.
             </p>
             <p>
-              Passionnée par le digital, la communication et la visibilité en ligne, j'accompagne aujourd'hui les professionnels du Var qui souhaitent développer leur présence digitale, gagner en visibilité et attirer davantage de clients.
+              Issue du domaine du droit et du recouvrement judiciaire, j'ai choisi de mettre mon sens de l'organisation, de l'analyse et du contact humain au service des entrepreneurs locaux.
             </p>
             <p>
-              Mon approche est simple : être proche du terrain, comprendre votre activité et mettre en place des solutions concrètes adaptées à vos objectifs.
+              Mon objectif est simple : <strong className="text-foreground">vous aider à être visible, crédible et trouvé par vos futurs clients.</strong>
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -356,19 +378,19 @@ function QuiSuisJe() {
 
 const testimonials = [
   {
-    name: "Julien M.",
-    role: "Commerçant — Roquebrune-sur-Argens",
-    text: "Grâce à Catherine, ma boutique est enfin visible sur Google. Les clients me trouvent, m'appellent et passent en magasin. Un vrai changement.",
+    name: "Cas n°1",
+    role: "Commerçant local",
+    text: "Développement de la visibilité locale et amélioration de la présence digitale.",
   },
   {
-    name: "Sophie L.",
-    role: "Thérapeute indépendante — Var",
-    text: "Catherine a structuré ma communication et créé mon site. Je reçois aujourd'hui des demandes régulières, sereinement.",
+    name: "Cas n°2",
+    role: "Profession libérale",
+    text: "Création d'un site internet professionnel et optimisation de la présence en ligne.",
   },
   {
-    name: "Marc & Équipe",
-    role: "Entreprise de services — Fréjus",
-    text: "Approche humaine, écoute, suivi clair des KPI. Nos campagnes Meta génèrent des leads qualifiés chaque semaine.",
+    name: "Cas n°3",
+    role: "Entreprise de services",
+    text: "Structuration de la communication digitale et amélioration de la visibilité locale.",
   },
 ];
 
@@ -377,20 +399,17 @@ function Temoignages() {
     <section className="bg-[image:var(--gradient-soft)] py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">Ils témoignent</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Des résultats humains, concrets, durables</h2>
+          <span className="font-script text-2xl text-[color:var(--turquoise)]">Cas d'usage</span>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Des accompagnements concrets, adaptés à chaque activité</h2>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {testimonials.map((t) => (
-            <figure key={t.name} className="rounded-3xl border border-border bg-card p-7 shadow-sm">
-              <div className="flex gap-0.5 text-[color:var(--rose)]">
-                {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+            <figure key={t.name} className="rounded-3xl border border-border bg-card p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-soft)] px-3 py-1 text-xs font-medium uppercase tracking-wider text-[color:var(--primary)]">
+                <Sparkles className="h-3 w-3" /> {t.name}
               </div>
-              <blockquote className="mt-4 text-foreground/85">« {t.text} »</blockquote>
-              <figcaption className="mt-5 border-t border-border pt-4">
-                <div className="font-medium text-foreground">{t.name}</div>
-                <div className="text-xs text-muted-foreground">{t.role}</div>
-              </figcaption>
+              <div className="mt-4 text-xl text-foreground">{t.role}</div>
+              <p className="mt-3 text-sm text-foreground/80">{t.text}</p>
             </figure>
           ))}
         </div>
@@ -413,7 +432,7 @@ function LeadMagnet() {
               <h2 className="mt-2 text-3xl text-foreground md:text-4xl">Les 7 erreurs qui empêchent votre entreprise d'être visible localement</h2>
               <p className="mt-4 text-muted-foreground">Téléchargez gratuitement le guide pour identifier ce qui freine votre visibilité — et comment y remédier.</p>
               <div className="mt-5 flex items-center gap-2 text-sm text-foreground/70">
-                <Download className="h-4 w-4 text-[color:var(--primary)]" /> PDF · 12 pages · gratuit
+                <Download className="h-4 w-4 text-[color:var(--primary)]" /> Guide gratuit à télécharger
               </div>
             </div>
             <form
@@ -451,7 +470,7 @@ const faqs = [
   { q: "Combien coûte un accompagnement ?", a: "Chaque activité est différente. Un échange permet d'identifier les solutions les plus adaptées à vos besoins et à votre budget." },
   { q: "Combien de temps faut-il pour voir des résultats ?", a: "Certaines actions apportent des résultats rapidement, d'autres nécessitent un travail régulier." },
   { q: "Puis-je choisir un seul service ?", a: "Oui. Chaque prestation peut être mise en place individuellement ou dans le cadre d'une stratégie globale." },
-  { q: "Travaillez-vous uniquement à Roquebrune-sur-Argens ?", a: "Je privilégie les acteurs locaux de Roquebrune-sur-Argens et du Var afin de proposer un accompagnement de proximité." },
+  { q: "Pourquoi travailler avec une interlocutrice locale ?", a: "Être implantée localement me permet de comprendre les réalités du terrain et les enjeux spécifiques des entreprises du Var." },
 ];
 
 function FAQ() {
@@ -461,7 +480,7 @@ function FAQ() {
       <div className="mx-auto max-w-3xl px-5 lg:px-8">
         <div className="text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">FAQ</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Vos questions, mes réponses</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Vos questions, mes réponses</h2>
         </div>
         <div className="mt-10 space-y-3">
           {faqs.map((f, i) => (
@@ -490,7 +509,7 @@ function Contact() {
         <div className="grid gap-10 md:grid-cols-2">
           <div>
             <span className="font-script text-2xl text-[color:var(--turquoise)]">Contact</span>
-            <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Discutons de votre projet.</h2>
+            <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Discutons de votre projet.</h2>
             <p className="mt-4 text-muted-foreground">Un échange simple pour comprendre votre activité, vos objectifs, et identifier ensemble les bonnes actions.</p>
             <div className="mt-8 space-y-4">
               <a href="tel:+33635264492" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:bg-muted">
@@ -575,9 +594,20 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-background/10">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 text-xs text-background/60 lg:px-8">
-          <span>© {new Date().getFullYear()} Cath & You — Tous droits réservés.</span>
-          <span className="flex items-center gap-1"><Facebook className="h-3.5 w-3.5" /><Instagram className="h-3.5 w-3.5" /></span>
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-5 text-xs text-background/60 md:flex-row md:items-center md:justify-between lg:px-8">
+          <span>© 2026 Cath & You — Tous droits réservés.</span>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <a href="https://app.notion.com/p/Mentions-L-gales-Cath-and-You-2fbe6c6bd165800e8325e416cbb7b5b3?source=copy_link" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-background">Mentions légales</a>
+            <a href="https://app.notion.com/p/Politique-de-confidentialit-Cath-and-You-2ede6c6bd1658009b089e4898bf30503?source=copy_link" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-background">Politique de confidentialité</a>
+            <button
+              type="button"
+              onClick={() => alert("Préférences cookies : aucun cookie tiers n'est utilisé sur ce site. Vous pouvez gérer le suivi via les paramètres de votre navigateur.")}
+              className="transition-colors hover:text-background"
+            >
+              Gestion des cookies
+            </button>
+            <span className="flex items-center gap-2 text-background/50"><Facebook className="h-3.5 w-3.5" /><Instagram className="h-3.5 w-3.5" /></span>
+          </div>
         </div>
       </div>
     </footer>
