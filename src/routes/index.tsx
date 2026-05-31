@@ -519,11 +519,11 @@ function Contact() {
                   <div className="font-medium text-foreground">06 35 26 44 92</div>
                 </div>
               </a>
-              <a href="mailto:contact@cathandyou.fr" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:bg-muted">
+              <a href="mailto:cathandyou.pro@gmail.com" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:bg-muted">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]"><Mail className="h-5 w-5" /></div>
                 <div>
                   <div className="text-xs text-muted-foreground">Email</div>
-                  <div className="font-medium text-foreground">contact@cathandyou.fr</div>
+                  <div className="font-medium text-foreground break-all">cathandyou.pro@gmail.com</div>
                 </div>
               </a>
               <WhatsAppButton label="Écrire sur WhatsApp" className="w-full justify-center" />
