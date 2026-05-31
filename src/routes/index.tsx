@@ -378,19 +378,19 @@ function QuiSuisJe() {
 
 const testimonials = [
   {
-    name: "Julien M.",
-    role: "Commerçant — Roquebrune-sur-Argens",
-    text: "Grâce à Catherine, ma boutique est enfin visible sur Google. Les clients me trouvent, m'appellent et passent en magasin. Un vrai changement.",
+    name: "Cas n°1",
+    role: "Commerçant local",
+    text: "Développement de la visibilité locale et amélioration de la présence digitale.",
   },
   {
-    name: "Sophie L.",
-    role: "Thérapeute indépendante — Var",
-    text: "Catherine a structuré ma communication et créé mon site. Je reçois aujourd'hui des demandes régulières, sereinement.",
+    name: "Cas n°2",
+    role: "Profession libérale",
+    text: "Création d'un site internet professionnel et optimisation de la présence en ligne.",
   },
   {
-    name: "Marc & Équipe",
-    role: "Entreprise de services — Fréjus",
-    text: "Approche humaine, écoute, suivi clair des KPI. Nos campagnes Meta génèrent des leads qualifiés chaque semaine.",
+    name: "Cas n°3",
+    role: "Entreprise de services",
+    text: "Structuration de la communication digitale et amélioration de la visibilité locale.",
   },
 ];
 
