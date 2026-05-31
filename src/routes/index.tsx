@@ -179,7 +179,7 @@ function Services() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Mes services</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Trois leviers pour faire grandir votre activité</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Trois leviers pour faire grandir votre activité</h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {services.map((s) => (
@@ -215,7 +215,7 @@ function Resultats() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:px-8">
         <div>
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Visibilité & résultats</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">La visibilité n'est pas une question de hasard.</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">La visibilité n'est pas une question de hasard.</h2>
           <p className="mt-5 text-muted-foreground">
             Chaque activité est différente. Les résultats dépendent de votre marché, de votre présence actuelle et des actions mises en place.
           </p>
@@ -247,7 +247,7 @@ function Performance() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Performance</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Piloter pour mieux progresser</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Piloter pour mieux progresser</h2>
           <p className="mt-4 text-muted-foreground">Un suivi clair, lisible, conçu même pour celles et ceux qui ne maîtrisent pas le marketing digital.</p>
         </div>
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_1.3fr]">
@@ -286,7 +286,7 @@ function CreationSite() {
         </div>
         <div className="order-1 lg:order-2">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Sites & tunnels</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Transformez votre visibilité en opportunités.</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Transformez votre visibilité en opportunités.</h2>
           <div className="mt-6 grid grid-cols-2 gap-2">
             {["Sites internet", "Lovable", "Systeme.io", "Landing pages", "Tunnels de vente", "Automatisations", "Formulaires", "WhatsApp Business"].map((t) => (
               <div key={t} className="flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2.5 text-sm">
@@ -400,7 +400,7 @@ function Temoignages() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Ils témoignent</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Des résultats humains, concrets, durables</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Des résultats humains, concrets, durables</h2>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {testimonials.map((t) => (
@@ -483,7 +483,7 @@ function FAQ() {
       <div className="mx-auto max-w-3xl px-5 lg:px-8">
         <div className="text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">FAQ</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Vos questions, mes réponses</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Vos questions, mes réponses</h2>
         </div>
         <div className="mt-10 space-y-3">
           {faqs.map((f, i) => (
@@ -512,7 +512,7 @@ function Contact() {
         <div className="grid gap-10 md:grid-cols-2">
           <div>
             <span className="font-script text-2xl text-[color:var(--turquoise)]">Contact</span>
-            <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Discutons de votre projet.</h2>
+            <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Discutons de votre projet.</h2>
             <p className="mt-4 text-muted-foreground">Un échange simple pour comprendre votre activité, vos objectifs, et identifier ensemble les bonnes actions.</p>
             <div className="mt-8 space-y-4">
               <a href="tel:+33635264492" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:bg-muted">
