@@ -34,10 +34,21 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Debug build output
+        run: |
+          echo "RACINE:"
+          ls -la
+          echo "DIST:"
+          ls -la dist || true
+          echo "OUTPUT:"
+          ls -la .output || true
+          echo "OUTPUT PUBLIC:"
+          ls -la .output/public || true
+
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-         path: ./dist
+          path: ./dist
 
   deploy:
     environment:
