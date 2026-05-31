@@ -314,9 +314,22 @@ function GoogleBusiness() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-2xl text-[color:var(--turquoise)]">Google Business Profile</span>
-          <h2 className="mt-2 text-4xl text-foreground md:text-5xl">Développez votre visibilité locale sur Google.</h2>
+          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Développez votre visibilité locale sur Google.</h2>
         </div>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-[color:var(--turquoise)]/40 bg-card p-6 shadow-[var(--shadow-soft)] md:p-8">
+          <div className="flex items-start gap-4">
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[image:var(--gradient-primary)] text-white">
+              <Sparkles className="h-5 w-5" />
+            </div>
+            <div>
+              <h3 className="text-xl text-foreground">Pourquoi Google Business est indispensable ?</h3>
+              <p className="mt-2 text-sm text-foreground/80">
+                Parce que vos futurs clients recherchent déjà vos services sur Google. Une fiche optimisée augmente votre visibilité locale et facilite les prises de contact.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((i) => (
             <div key={i.t} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
               <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
