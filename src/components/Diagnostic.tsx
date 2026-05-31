@@ -32,28 +32,7 @@ export function Diagnostic() {
         </div>
 
         <div className="rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] md:p-10">
-          {step === "form" && (
-            <form
-              className="grid gap-4 md:grid-cols-2"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setStep("questions");
-              }}
-            >
-              <Input label="Prénom" name="prenom" required />
-              <Input label="Nom" name="nom" required />
-              <Input label="Email" name="email" type="email" required />
-              <Input label="Téléphone" name="tel" type="tel" required />
-              <div className="md:col-span-2">
-                <Input label="Activité professionnelle" name="activite" required />
-              </div>
-              <div className="md:col-span-2 flex justify-center pt-2">
-                <button type="submit" className="rounded-full bg-[image:var(--gradient-primary)] px-8 py-3.5 font-medium text-white shadow-[var(--shadow-soft)] transition-transform hover:-translate-y-0.5">
-                  Commencer le diagnostic
-                </button>
-              </div>
-            </form>
-          )}
+          {step === "form" && <PreForm onSubmit={() => setStep("questions")} />}
 
           {step === "questions" && (
             <div className="space-y-6">
