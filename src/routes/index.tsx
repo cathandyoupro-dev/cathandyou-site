@@ -470,7 +470,7 @@ const faqs = [
   { q: "Combien coûte un accompagnement ?", a: "Chaque activité est différente. Un échange permet d'identifier les solutions les plus adaptées à vos besoins et à votre budget." },
   { q: "Combien de temps faut-il pour voir des résultats ?", a: "Certaines actions apportent des résultats rapidement, d'autres nécessitent un travail régulier." },
   { q: "Puis-je choisir un seul service ?", a: "Oui. Chaque prestation peut être mise en place individuellement ou dans le cadre d'une stratégie globale." },
-  { q: "Travaillez-vous uniquement à Roquebrune-sur-Argens ?", a: "Je privilégie les acteurs locaux de Roquebrune-sur-Argens et du Var afin de proposer un accompagnement de proximité." },
+  { q: "Pourquoi travailler avec une interlocutrice locale ?", a: "Être implantée localement me permet de comprendre les réalités du terrain et les enjeux spécifiques des entreprises du Var." },
 ];
 
 function FAQ() {
