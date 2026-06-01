@@ -31,18 +31,29 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Compute base path
+        id: base
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          # User/org sites (<user>.github.io) are served from root.
+          if [[ "$REPO_NAME" == *.github.io ]]; then
+            echo "base=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=/$REPO_NAME/" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build project
+        env:
+          BASE_PATH: ${{ steps.base.outputs.base }}
         run: npm run build
 
       - name: Prepare Pages output
         run: |
-          # GitHub Pages needs .nojekyll so paths starting with _ are served.
           touch dist/client/.nojekyll
           # SPA fallback so deep links keep working on Pages.
           if [ -f dist/client/index.html ] && [ ! -f dist/client/404.html ]; then
             cp dist/client/index.html dist/client/404.html
           fi
-          echo "Final output:"
           ls -la dist/client
 
       - name: Upload Pages Artifact
