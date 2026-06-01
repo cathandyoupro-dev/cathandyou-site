@@ -34,16 +34,16 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Debug build output
+      - name: Prepare Pages output
         run: |
-          echo "RACINE:"
-          ls -la
-          echo "DIST:"
-          ls -la dist || true
-          echo "OUTPUT:"
-          ls -la .output || true
-          echo "OUTPUT PUBLIC:"
-          ls -la .output/public || true
+          # GitHub Pages needs .nojekyll so paths starting with _ are served.
+          touch dist/client/.nojekyll
+          # SPA fallback so deep links keep working on Pages.
+          if [ -f dist/client/index.html ] && [ ! -f dist/client/404.html ]; then
+            cp dist/client/index.html dist/client/404.html
+          fi
+          echo "Final output:"
+          ls -la dist/client
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
