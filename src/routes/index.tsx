@@ -2,11 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowRight, Sparkles, Instagram, Facebook, Target, BarChart3, Globe, MessageSquare,
-  MapPin, Star, ChevronDown, Phone, Mail, Download, CheckCircle2,
+  MapPin, Star, ChevronDown, Phone, Mail, Download, CheckCircle2, Loader2,
+  Store, Briefcase, Users,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { WhatsAppButton, WhatsAppFloat, WHATSAPP_URL } from "@/components/WhatsAppButton";
 import { Diagnostic } from "@/components/Diagnostic";
+import { Carousel } from "@/components/Carousel";
+import { submitToFormspree } from "@/lib/formspree";
 import cathHero from "@/assets/cath-hero.jpeg";
 import cathGarden from "@/assets/cath-garden.jpeg";
 import cathBureau from "@/assets/cath-bureau.jpeg";
@@ -109,37 +112,69 @@ function Hero() {
   );
 }
 
-const audiences = [
-  "Artisans", "Commerçants", "Restaurants", "Food trucks", "Snacks", "Garagistes",
-  "Stations de lavage", "Producteurs locaux", "Activités nautiques", "Activités sportives",
-  "Esthéticiennes", "Thérapeutes", "Coachs sportifs", "Professions libérales",
-  "Associations", "Entrepreneurs locaux", "Entreprises de services", "Indépendants",
+const audienceGroups = [
+  {
+    icon: Store,
+    title: "Commerce & Restauration",
+    items: ["Artisans", "Commerçants", "Restaurants", "Food trucks", "Snacks", "Producteurs locaux"],
+    gradient: "from-[color:var(--rose)]/40 to-[color:var(--lavender)]/40",
+  },
+  {
+    icon: Briefcase,
+    title: "Services & Bien-être",
+    items: ["Esthéticiennes", "Thérapeutes", "Coachs sportifs", "Professions libérales", "Garagistes", "Stations de lavage"],
+    gradient: "from-[color:var(--turquoise)]/40 to-[color:var(--lavender)]/40",
+  },
+  {
+    icon: Users,
+    title: "Loisirs & Entrepreneuriat",
+    items: ["Activités nautiques", "Activités sportives", "Associations", "Entrepreneurs locaux", "Entreprises de services", "Indépendants"],
+    gradient: "from-[color:var(--lavender)]/40 to-[color:var(--rose)]/40",
+  },
 ];
 
 function PourQui() {
   return (
-    <section id="pour-qui" className="py-24">
+    <section id="pour-qui" className="py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Pour qui ?</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Un accompagnement pensé pour les acteurs locaux</h2>
-          <p className="mt-4 text-muted-foreground">
-            Que vous soyez commerçant, artisan, thérapeute, restaurateur, indépendant ou dirigeant d'une petite entreprise locale, votre visibilité est un levier essentiel de développement.
+          <h2 className="mt-2 text-balance text-3xl text-foreground sm:text-4xl md:text-5xl">
+            Un accompagnement pensé pour les acteurs locaux
+          </h2>
+          <p className="mt-4 text-balance text-muted-foreground">
+            Commerçant, artisan, thérapeute, restaurateur ou indépendant : votre visibilité est un levier essentiel de développement.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[color:var(--turquoise)]/40 bg-[color:var(--cream)] px-4 py-2 text-sm font-medium text-foreground shadow-sm">
             <MapPin className="h-4 w-4 text-[color:var(--turquoise)]" />
             Roquebrune-sur-Argens & alentours · Var
           </div>
         </div>
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
-          {audiences.map((a) => (
-            <span
-              key={a}
-              className="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-[color:var(--turquoise)] hover:shadow-[var(--shadow-soft)]"
-            >
-              {a}
-            </span>
-          ))}
+        <div className="mt-12">
+          <Carousel>
+            {audienceGroups.map((g) => (
+              <article
+                key={g.title}
+                className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]"
+              >
+                <div className={`absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br ${g.gradient} blur-2xl opacity-60`} />
+                <div className="relative">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)] ring-1 ring-border">
+                    <g.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 text-xl text-foreground">{g.title}</h3>
+                  <ul className="mt-4 space-y-2">
+                    {g.items.map((it) => (
+                      <li key={it} className="flex items-start gap-2 text-sm text-foreground/80">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--turquoise)]" />
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </Carousel>
         </div>
       </div>
     </section>
@@ -175,34 +210,41 @@ const services = [
 
 function Services() {
   return (
-    <section id="services" className="bg-[color:var(--cream)] py-24">
+    <section id="services" className="bg-[color:var(--cream)] py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Mes services</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Trois leviers pour faire grandir votre activité</h2>
+          <h2 className="mt-2 text-balance text-3xl text-foreground sm:text-4xl md:text-5xl">
+            Trois leviers pour faire grandir votre activité
+          </h2>
         </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {services.map((s) => (
-            <article key={s.title} className="group relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-glow)]">
-              <div className={`absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br ${s.gradient} blur-2xl opacity-60`} />
-              <div className="relative">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)] ring-1 ring-border">
-                  <s.icon className="h-5 w-5" />
+        <div className="mt-12">
+          <Carousel>
+            {services.map((s) => (
+              <article
+                key={s.title}
+                className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-glow)] md:p-7"
+              >
+                <div className={`absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br ${s.gradient} blur-2xl opacity-60`} />
+                <div className="relative">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)] ring-1 ring-border">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <div className="mt-5 text-xs font-medium uppercase tracking-wider text-muted-foreground">{s.tag}</div>
+                  <h3 className="mt-1 text-balance text-2xl text-foreground">{s.title}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
+                  <ul className="mt-5 space-y-2">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-sm text-foreground/80">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--turquoise)]" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="mt-5 text-xs font-medium uppercase tracking-wider text-muted-foreground">{s.tag}</div>
-                <h3 className="mt-1 text-2xl text-foreground">{s.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
-                <ul className="mt-5 space-y-2">
-                  {s.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2 text-sm text-foreground/80">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--turquoise)]" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </Carousel>
         </div>
       </div>
     </section>
@@ -225,9 +267,9 @@ function Resultats() {
               { label: "TikTok", val: "+1000%" },
               { label: "Facebook", val: "+159%" },
             ].map((s) => (
-              <div key={s.label} className="rounded-2xl border border-border bg-card p-4 text-center">
-                <div className="text-2xl text-[color:var(--primary)]">{s.val}</div>
-                <div className="text-xs text-muted-foreground">{s.label}</div>
+              <div key={s.label} className="flex flex-col items-center justify-center rounded-2xl border border-border bg-card p-4 text-center">
+                <div className="text-2xl font-semibold text-[color:var(--primary)]">{s.val}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
               </div>
             ))}
           </div>
