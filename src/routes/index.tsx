@@ -440,22 +440,26 @@ const testimonials = [
 
 function Temoignages() {
   return (
-    <section className="bg-[image:var(--gradient-soft)] py-24">
+    <section className="bg-[image:var(--gradient-soft)] py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Cas d'usage</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Des accompagnements concrets, adaptés à chaque activité</h2>
+          <h2 className="mt-2 text-balance text-3xl text-foreground sm:text-4xl md:text-5xl">
+            Des accompagnements concrets, adaptés à chaque activité
+          </h2>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <figure key={t.name} className="rounded-3xl border border-border bg-card p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-soft)] px-3 py-1 text-xs font-medium uppercase tracking-wider text-[color:var(--primary)]">
-                <Sparkles className="h-3 w-3" /> {t.name}
-              </div>
-              <div className="mt-4 text-xl text-foreground">{t.role}</div>
-              <p className="mt-3 text-sm text-foreground/80">{t.text}</p>
-            </figure>
-          ))}
+        <div className="mt-12">
+          <Carousel>
+            {testimonials.map((t) => (
+              <figure key={t.name} className="h-full rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] md:p-7">
+                <div className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-soft)] px-3 py-1 text-xs font-medium uppercase tracking-wider text-[color:var(--primary)]">
+                  <Sparkles className="h-3 w-3" /> {t.name}
+                </div>
+                <div className="mt-4 text-xl text-foreground">{t.role}</div>
+                <p className="mt-3 text-sm text-foreground/80">{t.text}</p>
+              </figure>
+            ))}
+          </Carousel>
         </div>
       </div>
     </section>
