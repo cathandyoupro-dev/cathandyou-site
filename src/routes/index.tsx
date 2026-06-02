@@ -467,43 +467,77 @@ function Temoignages() {
 }
 
 function LeadMagnet() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   return (
-    <section className="py-24">
+    <section className="py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-8 shadow-[var(--shadow-soft)] md:p-14">
+        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:p-8 md:p-14">
           <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[color:var(--lavender)] opacity-30 blur-3xl" />
           <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[color:var(--turquoise)] opacity-30 blur-3xl" />
           <div className="relative grid items-center gap-10 md:grid-cols-2">
             <div>
               <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Guide offert</span>
-              <h2 className="mt-2 text-3xl text-foreground md:text-4xl">Les 7 erreurs qui empêchent votre entreprise d'être visible localement</h2>
-              <p className="mt-4 text-muted-foreground">Téléchargez gratuitement le guide pour identifier ce qui freine votre visibilité — et comment y remédier.</p>
+              <h2 className="mt-2 text-balance text-3xl text-foreground md:text-4xl">
+                Les 7 erreurs qui empêchent votre entreprise d'être visible localement
+              </h2>
+              <p className="mt-4 text-balance text-muted-foreground">
+                Recevez gratuitement le guide pour identifier ce qui freine votre visibilité — et comment y remédier.
+              </p>
               <div className="mt-5 flex items-center gap-2 text-sm text-foreground/70">
-                <Download className="h-4 w-4 text-[color:var(--primary)]" /> Guide gratuit à télécharger
+                <Download className="h-4 w-4 text-[color:var(--primary)]" /> Envoi personnel après vérification de votre demande
               </div>
             </div>
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const fd = new FormData(e.currentTarget);
+                setStatus("sending");
+                try {
+                  await submitToFormspree(
+                    {
+                      type: "Demande guide gratuit",
+                      prenom: fd.get("prenom"),
+                      nom: fd.get("nom"),
+                      email: fd.get("email"),
+                      telephone: fd.get("tel"),
+                      activite: fd.get("activite"),
+                    },
+                    `Demande guide — ${fd.get("prenom")} ${fd.get("nom")}`
+                  );
+                  setStatus("sent");
+                } catch {
+                  setStatus("error");
+                }
+              }}
               className="grid gap-3 rounded-2xl border border-border bg-background/70 p-5 backdrop-blur"
             >
-              {sent ? (
+              {status === "sent" ? (
                 <div className="py-8 text-center">
                   <CheckCircle2 className="mx-auto h-10 w-10 text-[color:var(--turquoise)]" />
-                  <p className="mt-3 font-medium text-foreground">Merci ! Le guide arrive dans votre boîte mail.</p>
+                  <p className="mt-3 text-balance font-medium text-foreground">Merci pour votre demande.</p>
+                  <p className="mx-auto mt-2 max-w-xs text-balance text-sm text-muted-foreground">
+                    Votre guide va vous être envoyé personnellement après vérification de votre demande.
+                  </p>
                 </div>
               ) : (
                 <>
                   <div className="grid grid-cols-2 gap-3">
-                    <input required placeholder="Prénom" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
-                    <input required placeholder="Nom" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                    <input name="prenom" required placeholder="Prénom" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                    <input name="nom" required placeholder="Nom" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
                   </div>
-                  <input required type="email" placeholder="Email" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
-                  <input required type="tel" placeholder="Téléphone" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
-                  <input required placeholder="Activité professionnelle" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
-                  <button className="mt-1 rounded-full bg-[image:var(--gradient-primary)] px-5 py-3 font-medium text-white shadow-[var(--shadow-soft)]">
-                    Recevoir le guide gratuit
+                  <input name="email" required type="email" placeholder="Email" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                  <input name="tel" required type="tel" placeholder="Téléphone" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                  <input name="activite" required placeholder="Activité professionnelle" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                  <button
+                    disabled={status === "sending"}
+                    className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-5 py-3 font-medium text-white shadow-[var(--shadow-soft)] disabled:opacity-60"
+                  >
+                    {status === "sending" && <Loader2 className="h-4 w-4 animate-spin" />}
+                    {status === "sending" ? "Envoi…" : "Recevoir le guide gratuit"}
                   </button>
+                  {status === "error" && (
+                    <p className="text-center text-sm text-red-600">Erreur d'envoi. Réessayez ou contactez-nous sur WhatsApp.</p>
+                  )}
                 </>
               )}
             </form>
@@ -551,28 +585,32 @@ function FAQ() {
 }
 
 function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2">
           <div>
             <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Contact</span>
-            <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Discutons de votre projet.</h2>
-            <p className="mt-4 text-muted-foreground">Un échange simple pour comprendre votre activité, vos objectifs, et identifier ensemble les bonnes actions.</p>
+            <h2 className="mt-2 text-balance text-3xl text-foreground sm:text-4xl md:text-5xl">
+              Discutons de votre projet.
+            </h2>
+            <p className="mt-4 text-balance text-muted-foreground">
+              Un échange simple pour comprendre votre activité, vos objectifs, et identifier ensemble les bonnes actions.
+            </p>
             <div className="mt-8 space-y-4">
               <a href="tel:+33635264492" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:bg-muted">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]"><Phone className="h-5 w-5" /></div>
-                <div>
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]"><Phone className="h-5 w-5" /></div>
+                <div className="min-w-0">
                   <div className="text-xs text-muted-foreground">Téléphone</div>
                   <div className="font-medium text-foreground">06 35 26 44 92</div>
                 </div>
               </a>
               <a href="mailto:cathandyou.pro@gmail.com" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:bg-muted">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]"><Mail className="h-5 w-5" /></div>
-                <div>
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]"><Mail className="h-5 w-5" /></div>
+                <div className="min-w-0 flex-1">
                   <div className="text-xs text-muted-foreground">Email</div>
-                  <div className="font-medium text-foreground break-all">cathandyou.pro@gmail.com</div>
+                  <div className="break-all text-sm font-medium text-foreground sm:text-base">cathandyou.pro@gmail.com</div>
                 </div>
               </a>
               <WhatsAppButton label="Écrire sur WhatsApp" className="w-full justify-center" />
@@ -582,28 +620,56 @@ function Contact() {
             </div>
           </div>
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-            className="self-start rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] md:p-8"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const fd = new FormData(e.currentTarget);
+              setStatus("sending");
+              try {
+                await submitToFormspree(
+                  {
+                    type: "Message contact",
+                    prenom: fd.get("prenom"),
+                    nom: fd.get("nom"),
+                    email: fd.get("email"),
+                    telephone: fd.get("tel"),
+                    activite_ville: fd.get("activite"),
+                    message: fd.get("message"),
+                  },
+                  `Contact — ${fd.get("prenom")} ${fd.get("nom")}`
+                );
+                setStatus("sent");
+              } catch {
+                setStatus("error");
+              }
+            }}
+            className="self-start rounded-3xl border border-border bg-card p-5 shadow-[var(--shadow-soft)] sm:p-6 md:p-8"
           >
-            {sent ? (
+            {status === "sent" ? (
               <div className="py-12 text-center">
                 <CheckCircle2 className="mx-auto h-12 w-12 text-[color:var(--turquoise)]" />
                 <h3 className="mt-4 text-2xl text-foreground">Message envoyé !</h3>
-                <p className="mt-2 text-sm text-muted-foreground">Je reviens vers vous très vite.</p>
+                <p className="mt-2 text-balance text-sm text-muted-foreground">Je reviens vers vous très vite.</p>
               </div>
             ) : (
               <div className="grid gap-3">
                 <div className="grid grid-cols-2 gap-3">
-                  <input required placeholder="Prénom" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                  <input required placeholder="Nom" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                  <input name="prenom" required placeholder="Prénom" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                  <input name="nom" required placeholder="Nom" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
                 </div>
-                <input required type="email" placeholder="Email" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                <input required type="tel" placeholder="Téléphone" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                <input placeholder="Activité — Ville" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                <textarea required rows={5} placeholder="Parlez-moi de votre projet…" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                <button className="mt-1 rounded-full bg-[image:var(--gradient-primary)] px-5 py-3.5 font-medium text-white shadow-[var(--shadow-soft)]">
-                  Envoyer mon message
+                <input name="email" required type="email" placeholder="Email" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                <input name="tel" required type="tel" placeholder="Téléphone" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                <input name="activite" placeholder="Activité — Ville" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                <textarea name="message" required rows={5} placeholder="Parlez-moi de votre projet…" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                <button
+                  disabled={status === "sending"}
+                  className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-5 py-3.5 font-medium text-white shadow-[var(--shadow-soft)] disabled:opacity-60"
+                >
+                  {status === "sending" && <Loader2 className="h-4 w-4 animate-spin" />}
+                  {status === "sending" ? "Envoi…" : "Envoyer mon message"}
                 </button>
+                {status === "error" && (
+                  <p className="text-center text-sm text-red-600">Erreur d'envoi. Réessayez ou contactez-nous sur WhatsApp.</p>
+                )}
               </div>
             )}
           </form>
