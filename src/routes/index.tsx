@@ -2,11 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowRight, Sparkles, Instagram, Facebook, Target, BarChart3, Globe, MessageSquare,
-  MapPin, Star, ChevronDown, Phone, Mail, Download, CheckCircle2,
+  MapPin, Star, ChevronDown, Phone, Mail, Download, CheckCircle2, Loader2,
+  Store, Briefcase, Users,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { WhatsAppButton, WhatsAppFloat, WHATSAPP_URL } from "@/components/WhatsAppButton";
 import { Diagnostic } from "@/components/Diagnostic";
+import { Carousel } from "@/components/Carousel";
+import { submitToFormspree } from "@/lib/formspree";
 import cathHero from "@/assets/cath-hero.jpeg";
 import cathGarden from "@/assets/cath-garden.jpeg";
 import cathBureau from "@/assets/cath-bureau.jpeg";
@@ -109,37 +112,69 @@ function Hero() {
   );
 }
 
-const audiences = [
-  "Artisans", "Commerçants", "Restaurants", "Food trucks", "Snacks", "Garagistes",
-  "Stations de lavage", "Producteurs locaux", "Activités nautiques", "Activités sportives",
-  "Esthéticiennes", "Thérapeutes", "Coachs sportifs", "Professions libérales",
-  "Associations", "Entrepreneurs locaux", "Entreprises de services", "Indépendants",
+const audienceGroups = [
+  {
+    icon: Store,
+    title: "Commerce & Restauration",
+    items: ["Artisans", "Commerçants", "Restaurants", "Food trucks", "Snacks", "Producteurs locaux"],
+    gradient: "from-[color:var(--rose)]/40 to-[color:var(--lavender)]/40",
+  },
+  {
+    icon: Briefcase,
+    title: "Services & Bien-être",
+    items: ["Esthéticiennes", "Thérapeutes", "Coachs sportifs", "Professions libérales", "Garagistes", "Stations de lavage"],
+    gradient: "from-[color:var(--turquoise)]/40 to-[color:var(--lavender)]/40",
+  },
+  {
+    icon: Users,
+    title: "Loisirs & Entrepreneuriat",
+    items: ["Activités nautiques", "Activités sportives", "Associations", "Entrepreneurs locaux", "Entreprises de services", "Indépendants"],
+    gradient: "from-[color:var(--lavender)]/40 to-[color:var(--rose)]/40",
+  },
 ];
 
 function PourQui() {
   return (
-    <section id="pour-qui" className="py-24">
+    <section id="pour-qui" className="py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Pour qui ?</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Un accompagnement pensé pour les acteurs locaux</h2>
-          <p className="mt-4 text-muted-foreground">
-            Que vous soyez commerçant, artisan, thérapeute, restaurateur, indépendant ou dirigeant d'une petite entreprise locale, votre visibilité est un levier essentiel de développement.
+          <h2 className="mt-2 text-balance text-3xl text-foreground sm:text-4xl md:text-5xl">
+            Un accompagnement pensé pour les acteurs locaux
+          </h2>
+          <p className="mt-4 text-balance text-muted-foreground">
+            Commerçant, artisan, thérapeute, restaurateur ou indépendant : votre visibilité est un levier essentiel de développement.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[color:var(--turquoise)]/40 bg-[color:var(--cream)] px-4 py-2 text-sm font-medium text-foreground shadow-sm">
             <MapPin className="h-4 w-4 text-[color:var(--turquoise)]" />
             Roquebrune-sur-Argens & alentours · Var
           </div>
         </div>
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
-          {audiences.map((a) => (
-            <span
-              key={a}
-              className="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-[color:var(--turquoise)] hover:shadow-[var(--shadow-soft)]"
-            >
-              {a}
-            </span>
-          ))}
+        <div className="mt-12">
+          <Carousel>
+            {audienceGroups.map((g) => (
+              <article
+                key={g.title}
+                className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]"
+              >
+                <div className={`absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br ${g.gradient} blur-2xl opacity-60`} />
+                <div className="relative">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)] ring-1 ring-border">
+                    <g.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 text-xl text-foreground">{g.title}</h3>
+                  <ul className="mt-4 space-y-2">
+                    {g.items.map((it) => (
+                      <li key={it} className="flex items-start gap-2 text-sm text-foreground/80">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--turquoise)]" />
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </Carousel>
         </div>
       </div>
     </section>
@@ -175,34 +210,41 @@ const services = [
 
 function Services() {
   return (
-    <section id="services" className="bg-[color:var(--cream)] py-24">
+    <section id="services" className="bg-[color:var(--cream)] py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Mes services</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Trois leviers pour faire grandir votre activité</h2>
+          <h2 className="mt-2 text-balance text-3xl text-foreground sm:text-4xl md:text-5xl">
+            Trois leviers pour faire grandir votre activité
+          </h2>
         </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {services.map((s) => (
-            <article key={s.title} className="group relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-glow)]">
-              <div className={`absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br ${s.gradient} blur-2xl opacity-60`} />
-              <div className="relative">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)] ring-1 ring-border">
-                  <s.icon className="h-5 w-5" />
+        <div className="mt-12">
+          <Carousel>
+            {services.map((s) => (
+              <article
+                key={s.title}
+                className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-glow)] md:p-7"
+              >
+                <div className={`absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br ${s.gradient} blur-2xl opacity-60`} />
+                <div className="relative">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)] ring-1 ring-border">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <div className="mt-5 text-xs font-medium uppercase tracking-wider text-muted-foreground">{s.tag}</div>
+                  <h3 className="mt-1 text-balance text-2xl text-foreground">{s.title}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
+                  <ul className="mt-5 space-y-2">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-sm text-foreground/80">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--turquoise)]" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="mt-5 text-xs font-medium uppercase tracking-wider text-muted-foreground">{s.tag}</div>
-                <h3 className="mt-1 text-2xl text-foreground">{s.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
-                <ul className="mt-5 space-y-2">
-                  {s.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2 text-sm text-foreground/80">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[color:var(--turquoise)]" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </Carousel>
         </div>
       </div>
     </section>
@@ -225,9 +267,9 @@ function Resultats() {
               { label: "TikTok", val: "+1000%" },
               { label: "Facebook", val: "+159%" },
             ].map((s) => (
-              <div key={s.label} className="rounded-2xl border border-border bg-card p-4 text-center">
-                <div className="text-2xl text-[color:var(--primary)]">{s.val}</div>
-                <div className="text-xs text-muted-foreground">{s.label}</div>
+              <div key={s.label} className="flex flex-col items-center justify-center rounded-2xl border border-border bg-card p-4 text-center">
+                <div className="text-2xl font-semibold text-[color:var(--primary)]">{s.val}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
               </div>
             ))}
           </div>
@@ -329,15 +371,17 @@ function GoogleBusiness() {
             </div>
           </div>
         </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((i) => (
-            <div key={i.t} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
-                <i.icon className="h-5 w-5" />
+        <div className="mt-10">
+          <Carousel>
+            {items.map((i) => (
+              <div key={i.t} className="flex h-full items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
+                  <i.icon className="h-5 w-5" />
+                </div>
+                <p className="pt-2 text-sm text-foreground">{i.t}</p>
               </div>
-              <p className="pt-2 text-sm text-foreground">{i.t}</p>
-            </div>
-          ))}
+            ))}
+          </Carousel>
         </div>
       </div>
     </section>
@@ -396,22 +440,26 @@ const testimonials = [
 
 function Temoignages() {
   return (
-    <section className="bg-[image:var(--gradient-soft)] py-24">
+    <section className="bg-[image:var(--gradient-soft)] py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Cas d'usage</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Des accompagnements concrets, adaptés à chaque activité</h2>
+          <h2 className="mt-2 text-balance text-3xl text-foreground sm:text-4xl md:text-5xl">
+            Des accompagnements concrets, adaptés à chaque activité
+          </h2>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <figure key={t.name} className="rounded-3xl border border-border bg-card p-7 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-soft)] px-3 py-1 text-xs font-medium uppercase tracking-wider text-[color:var(--primary)]">
-                <Sparkles className="h-3 w-3" /> {t.name}
-              </div>
-              <div className="mt-4 text-xl text-foreground">{t.role}</div>
-              <p className="mt-3 text-sm text-foreground/80">{t.text}</p>
-            </figure>
-          ))}
+        <div className="mt-12">
+          <Carousel>
+            {testimonials.map((t) => (
+              <figure key={t.name} className="h-full rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] md:p-7">
+                <div className="inline-flex items-center gap-2 rounded-full bg-[image:var(--gradient-soft)] px-3 py-1 text-xs font-medium uppercase tracking-wider text-[color:var(--primary)]">
+                  <Sparkles className="h-3 w-3" /> {t.name}
+                </div>
+                <div className="mt-4 text-xl text-foreground">{t.role}</div>
+                <p className="mt-3 text-sm text-foreground/80">{t.text}</p>
+              </figure>
+            ))}
+          </Carousel>
         </div>
       </div>
     </section>
@@ -419,43 +467,77 @@ function Temoignages() {
 }
 
 function LeadMagnet() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   return (
-    <section className="py-24">
+    <section className="py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-8 shadow-[var(--shadow-soft)] md:p-14">
+        <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:p-8 md:p-14">
           <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[color:var(--lavender)] opacity-30 blur-3xl" />
           <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[color:var(--turquoise)] opacity-30 blur-3xl" />
           <div className="relative grid items-center gap-10 md:grid-cols-2">
             <div>
               <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Guide offert</span>
-              <h2 className="mt-2 text-3xl text-foreground md:text-4xl">Les 7 erreurs qui empêchent votre entreprise d'être visible localement</h2>
-              <p className="mt-4 text-muted-foreground">Téléchargez gratuitement le guide pour identifier ce qui freine votre visibilité — et comment y remédier.</p>
+              <h2 className="mt-2 text-balance text-3xl text-foreground md:text-4xl">
+                Les 7 erreurs qui empêchent votre entreprise d'être visible localement
+              </h2>
+              <p className="mt-4 text-balance text-muted-foreground">
+                Recevez gratuitement le guide pour identifier ce qui freine votre visibilité — et comment y remédier.
+              </p>
               <div className="mt-5 flex items-center gap-2 text-sm text-foreground/70">
-                <Download className="h-4 w-4 text-[color:var(--primary)]" /> Guide gratuit à télécharger
+                <Download className="h-4 w-4 text-[color:var(--primary)]" /> Envoi personnel après vérification de votre demande
               </div>
             </div>
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const fd = new FormData(e.currentTarget);
+                setStatus("sending");
+                try {
+                  await submitToFormspree(
+                    {
+                      type: "Demande guide gratuit",
+                      prenom: fd.get("prenom"),
+                      nom: fd.get("nom"),
+                      email: fd.get("email"),
+                      telephone: fd.get("tel"),
+                      activite: fd.get("activite"),
+                    },
+                    `Demande guide — ${fd.get("prenom")} ${fd.get("nom")}`
+                  );
+                  setStatus("sent");
+                } catch {
+                  setStatus("error");
+                }
+              }}
               className="grid gap-3 rounded-2xl border border-border bg-background/70 p-5 backdrop-blur"
             >
-              {sent ? (
+              {status === "sent" ? (
                 <div className="py-8 text-center">
                   <CheckCircle2 className="mx-auto h-10 w-10 text-[color:var(--turquoise)]" />
-                  <p className="mt-3 font-medium text-foreground">Merci ! Le guide arrive dans votre boîte mail.</p>
+                  <p className="mt-3 text-balance font-medium text-foreground">Merci pour votre demande.</p>
+                  <p className="mx-auto mt-2 max-w-xs text-balance text-sm text-muted-foreground">
+                    Votre guide va vous être envoyé personnellement après vérification de votre demande.
+                  </p>
                 </div>
               ) : (
                 <>
                   <div className="grid grid-cols-2 gap-3">
-                    <input required placeholder="Prénom" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
-                    <input required placeholder="Nom" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                    <input name="prenom" required placeholder="Prénom" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                    <input name="nom" required placeholder="Nom" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
                   </div>
-                  <input required type="email" placeholder="Email" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
-                  <input required type="tel" placeholder="Téléphone" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
-                  <input required placeholder="Activité professionnelle" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
-                  <button className="mt-1 rounded-full bg-[image:var(--gradient-primary)] px-5 py-3 font-medium text-white shadow-[var(--shadow-soft)]">
-                    Recevoir le guide gratuit
+                  <input name="email" required type="email" placeholder="Email" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                  <input name="tel" required type="tel" placeholder="Téléphone" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                  <input name="activite" required placeholder="Activité professionnelle" className="rounded-xl border border-border bg-card px-3 py-2.5 text-sm" />
+                  <button
+                    disabled={status === "sending"}
+                    className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-5 py-3 font-medium text-white shadow-[var(--shadow-soft)] disabled:opacity-60"
+                  >
+                    {status === "sending" && <Loader2 className="h-4 w-4 animate-spin" />}
+                    {status === "sending" ? "Envoi…" : "Recevoir le guide gratuit"}
                   </button>
+                  {status === "error" && (
+                    <p className="text-center text-sm text-red-600">Erreur d'envoi. Réessayez ou contactez-nous sur WhatsApp.</p>
+                  )}
                 </>
               )}
             </form>
@@ -503,28 +585,32 @@ function FAQ() {
 }
 
 function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2">
           <div>
             <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Contact</span>
-            <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Discutons de votre projet.</h2>
-            <p className="mt-4 text-muted-foreground">Un échange simple pour comprendre votre activité, vos objectifs, et identifier ensemble les bonnes actions.</p>
+            <h2 className="mt-2 text-balance text-3xl text-foreground sm:text-4xl md:text-5xl">
+              Discutons de votre projet.
+            </h2>
+            <p className="mt-4 text-balance text-muted-foreground">
+              Un échange simple pour comprendre votre activité, vos objectifs, et identifier ensemble les bonnes actions.
+            </p>
             <div className="mt-8 space-y-4">
               <a href="tel:+33635264492" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:bg-muted">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]"><Phone className="h-5 w-5" /></div>
-                <div>
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]"><Phone className="h-5 w-5" /></div>
+                <div className="min-w-0">
                   <div className="text-xs text-muted-foreground">Téléphone</div>
                   <div className="font-medium text-foreground">06 35 26 44 92</div>
                 </div>
               </a>
               <a href="mailto:cathandyou.pro@gmail.com" className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:bg-muted">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]"><Mail className="h-5 w-5" /></div>
-                <div>
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]"><Mail className="h-5 w-5" /></div>
+                <div className="min-w-0 flex-1">
                   <div className="text-xs text-muted-foreground">Email</div>
-                  <div className="font-medium text-foreground break-all">cathandyou.pro@gmail.com</div>
+                  <div className="break-all text-sm font-medium text-foreground sm:text-base">cathandyou.pro@gmail.com</div>
                 </div>
               </a>
               <WhatsAppButton label="Écrire sur WhatsApp" className="w-full justify-center" />
@@ -534,28 +620,56 @@ function Contact() {
             </div>
           </div>
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-            className="self-start rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] md:p-8"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const fd = new FormData(e.currentTarget);
+              setStatus("sending");
+              try {
+                await submitToFormspree(
+                  {
+                    type: "Message contact",
+                    prenom: fd.get("prenom"),
+                    nom: fd.get("nom"),
+                    email: fd.get("email"),
+                    telephone: fd.get("tel"),
+                    activite_ville: fd.get("activite"),
+                    message: fd.get("message"),
+                  },
+                  `Contact — ${fd.get("prenom")} ${fd.get("nom")}`
+                );
+                setStatus("sent");
+              } catch {
+                setStatus("error");
+              }
+            }}
+            className="self-start rounded-3xl border border-border bg-card p-5 shadow-[var(--shadow-soft)] sm:p-6 md:p-8"
           >
-            {sent ? (
+            {status === "sent" ? (
               <div className="py-12 text-center">
                 <CheckCircle2 className="mx-auto h-12 w-12 text-[color:var(--turquoise)]" />
                 <h3 className="mt-4 text-2xl text-foreground">Message envoyé !</h3>
-                <p className="mt-2 text-sm text-muted-foreground">Je reviens vers vous très vite.</p>
+                <p className="mt-2 text-balance text-sm text-muted-foreground">Je reviens vers vous très vite.</p>
               </div>
             ) : (
               <div className="grid gap-3">
                 <div className="grid grid-cols-2 gap-3">
-                  <input required placeholder="Prénom" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                  <input required placeholder="Nom" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                  <input name="prenom" required placeholder="Prénom" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                  <input name="nom" required placeholder="Nom" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
                 </div>
-                <input required type="email" placeholder="Email" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                <input required type="tel" placeholder="Téléphone" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                <input placeholder="Activité — Ville" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                <textarea required rows={5} placeholder="Parlez-moi de votre projet…" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
-                <button className="mt-1 rounded-full bg-[image:var(--gradient-primary)] px-5 py-3.5 font-medium text-white shadow-[var(--shadow-soft)]">
-                  Envoyer mon message
+                <input name="email" required type="email" placeholder="Email" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                <input name="tel" required type="tel" placeholder="Téléphone" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                <input name="activite" placeholder="Activité — Ville" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                <textarea name="message" required rows={5} placeholder="Parlez-moi de votre projet…" className="rounded-xl border border-border bg-background px-3 py-3 text-sm" />
+                <button
+                  disabled={status === "sending"}
+                  className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-[image:var(--gradient-primary)] px-5 py-3.5 font-medium text-white shadow-[var(--shadow-soft)] disabled:opacity-60"
+                >
+                  {status === "sending" && <Loader2 className="h-4 w-4 animate-spin" />}
+                  {status === "sending" ? "Envoi…" : "Envoyer mon message"}
                 </button>
+                {status === "error" && (
+                  <p className="text-center text-sm text-red-600">Erreur d'envoi. Réessayez ou contactez-nous sur WhatsApp.</p>
+                )}
               </div>
             )}
           </form>
