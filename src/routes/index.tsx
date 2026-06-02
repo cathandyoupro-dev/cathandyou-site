@@ -371,15 +371,17 @@ function GoogleBusiness() {
             </div>
           </div>
         </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((i) => (
-            <div key={i.t} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
-                <i.icon className="h-5 w-5" />
+        <div className="mt-10">
+          <Carousel>
+            {items.map((i) => (
+              <div key={i.t} className="flex h-full items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
+                  <i.icon className="h-5 w-5" />
+                </div>
+                <p className="pt-2 text-sm text-foreground">{i.t}</p>
               </div>
-              <p className="pt-2 text-sm text-foreground">{i.t}</p>
-            </div>
-          ))}
+            ))}
+          </Carousel>
         </div>
       </div>
     </section>
