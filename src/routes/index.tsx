@@ -257,7 +257,7 @@ function Resultats() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:px-8">
         <div>
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Visibilité & résultats</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">La visibilité n'est pas une question de hasard.</h2>
+          <h2 className="mt-2 text-balance text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">La visibilité n'est pas une question de hasard.</h2>
           <p className="mt-5 text-muted-foreground">
             Chaque activité est différente. Les résultats dépendent de votre marché, de votre présence actuelle et des actions mises en place.
           </p>
@@ -289,7 +289,7 @@ function Performance() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Performance</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Piloter pour mieux progresser</h2>
+          <h2 className="mt-2 text-balance text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Piloter pour mieux progresser</h2>
           <p className="mt-4 text-muted-foreground">Un suivi clair, lisible, conçu même pour celles et ceux qui ne maîtrisent pas le marketing digital.</p>
         </div>
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_1.3fr]">
@@ -328,7 +328,7 @@ function CreationSite() {
         </div>
         <div className="order-1 lg:order-2">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Sites & tunnels</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Transformez votre visibilité en opportunités.</h2>
+          <h2 className="mt-2 text-balance text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Transformez votre visibilité en opportunités.</h2>
           <div className="mt-6 grid grid-cols-2 gap-2">
             {["Sites internet", "Lovable", "Systeme.io", "Landing pages", "Tunnels de vente", "Automatisations", "Formulaires", "WhatsApp Business"].map((t) => (
               <div key={t} className="flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2.5 text-sm">
@@ -356,7 +356,7 @@ function GoogleBusiness() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Google Business Profile</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Développez votre visibilité locale sur Google.</h2>
+          <h2 className="mt-2 text-balance text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Développez votre visibilité locale sur Google.</h2>
         </div>
         <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-[color:var(--turquoise)]/40 bg-card p-6 shadow-[var(--shadow-soft)] md:p-8">
           <div className="flex items-start gap-4">
@@ -364,24 +364,22 @@ function GoogleBusiness() {
               <Sparkles className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-xl text-foreground">Pourquoi Google Business est indispensable ?</h3>
+              <h3 className="text-xl text-foreground">Pourquoi Google Business est indispensable</h3>
               <p className="mt-2 text-sm text-foreground/80">
                 Parce que vos futurs clients recherchent déjà vos services sur Google. Une fiche optimisée augmente votre visibilité locale et facilite les prises de contact.
               </p>
             </div>
           </div>
-        </div>
-        <div className="mt-10">
-          <Carousel>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {items.map((i) => (
-              <div key={i.t} className="flex h-full items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
-                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
-                  <i.icon className="h-5 w-5" />
+              <li key={i.t} className="flex items-center gap-3 rounded-xl border border-border bg-background/60 p-3">
+                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
+                  <i.icon className="h-4 w-4" />
                 </div>
-                <p className="pt-2 text-sm text-foreground">{i.t}</p>
-              </div>
+                <span className="text-sm text-foreground">{i.t}</span>
+              </li>
             ))}
-          </Carousel>
+          </ul>
         </div>
       </div>
     </section>
@@ -398,7 +396,7 @@ function QuiSuisJe() {
         </div>
         <div>
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Qui suis-je</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Bonjour, moi c'est Catherine.</h2>
+          <h2 className="mt-2 text-balance text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Bonjour, moi c'est Catherine.</h2>
           <div className="mt-6 space-y-4 text-foreground/80">
             <p>
               Habitante de Roquebrune-sur-Argens, maman entrepreneuse et passionnée par le digital, j'accompagne les entreprises locales qui souhaitent développer leur visibilité et leur présence en ligne.
@@ -563,7 +561,7 @@ function FAQ() {
       <div className="mx-auto max-w-3xl px-5 lg:px-8">
         <div className="text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">FAQ</span>
-          <h2 className="mt-2 text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Vos questions, mes réponses</h2>
+          <h2 className="mt-2 text-balance text-4xl text-foreground sm:text-[2.75rem] md:text-5xl">Vos questions, mes réponses</h2>
         </div>
         <div className="mt-10 space-y-3">
           {faqs.map((f, i) => (

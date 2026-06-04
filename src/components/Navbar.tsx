@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import cathAvatar from "@/assets/cath-avatar.png";
 
 const links = [
   { href: "#services", label: "Services" },
@@ -15,9 +16,16 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        <a href="#top" className="flex items-baseline gap-1.5">
-          <span className="font-display text-2xl font-semibold text-foreground">Cath</span>
-          <span className="font-script text-2xl text-[color:var(--turquoise)]">& you</span>
+        <a href="#top" className="flex items-center gap-2.5">
+          <img
+            src={cathAvatar}
+            alt="Catherine — Cath & You"
+            className="h-10 w-10 rounded-full object-cover ring-2 ring-[color:var(--turquoise)]/40"
+          />
+          <span className="flex items-baseline gap-1.5">
+            <span className="font-display text-2xl font-semibold text-foreground">Cath</span>
+            <span className="font-script text-2xl text-[color:var(--turquoise)]">& you</span>
+          </span>
         </a>
         <nav className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
