@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import cathAvatar from "@/assets/cath-avatar.png";
 
 const links = [
   { href: "#services", label: "Services" },
