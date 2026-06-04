@@ -364,24 +364,22 @@ function GoogleBusiness() {
               <Sparkles className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-xl text-foreground">Pourquoi Google Business est indispensable ?</h3>
+              <h3 className="text-xl text-foreground">Pourquoi Google Business est indispensable</h3>
               <p className="mt-2 text-sm text-foreground/80">
                 Parce que vos futurs clients recherchent déjà vos services sur Google. Une fiche optimisée augmente votre visibilité locale et facilite les prises de contact.
               </p>
             </div>
           </div>
-        </div>
-        <div className="mt-10">
-          <Carousel>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
             {items.map((i) => (
-              <div key={i.t} className="flex h-full items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
-                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
-                  <i.icon className="h-5 w-5" />
+              <li key={i.t} className="flex items-center gap-3 rounded-xl border border-border bg-background/60 p-3">
+                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[image:var(--gradient-soft)] text-[color:var(--primary)]">
+                  <i.icon className="h-4 w-4" />
                 </div>
-                <p className="pt-2 text-sm text-foreground">{i.t}</p>
-              </div>
+                <span className="text-sm text-foreground">{i.t}</span>
+              </li>
             ))}
-          </Carousel>
+          </ul>
         </div>
       </div>
     </section>
