@@ -90,7 +90,7 @@ function Hero() {
         <div className="relative">
           <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[color:var(--turquoise)]/40 to-[color:var(--rose)]/40 blur-2xl" />
           <div className="relative overflow-hidden rounded-[2rem] border border-white/60 shadow-[var(--shadow-glow)] ring-1 ring-white/40">
-            <img src={cathHero} alt="Catherine, fondatrice de Cath & You" className="aspect-[4/5] w-full object-cover" />
+            <img src={cathHero} alt="Catherine, fondatrice de Cath & You" className="aspect-[4/3] w-full object-cover object-[center_30%] md:aspect-[4/5] md:object-center" />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10" />
           </div>
           <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-border bg-card px-5 py-4 shadow-[var(--shadow-soft)] sm:block">
