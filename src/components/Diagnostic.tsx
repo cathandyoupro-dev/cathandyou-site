@@ -69,8 +69,11 @@ export function Diagnostic() {
         <div className="mb-10 text-center">
           <span className="font-script text-[1.75rem] md:text-3xl text-[color:var(--turquoise)]">Offert</span>
           <h2 className="mt-2 text-balance text-3xl text-foreground sm:text-4xl md:text-5xl">
-            Recevez votre mini diagnostic visibilité gratuit
+            Diagnostic Visibilité Offert
           </h2>
+          <p className="mx-auto mt-3 text-sm font-medium text-foreground/70">
+            Valeur estimée : 150 € — gratuit pour vous
+          </p>
           <p className="mx-auto mt-4 max-w-xl text-balance text-muted-foreground">
             Découvrez les points forts et les axes d'amélioration de votre présence digitale.
           </p>

@@ -409,7 +409,7 @@ function QuiSuisJe() {
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#diagnostic" className="rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background">Mon diagnostic gratuit</a>
+            <a href="#diagnostic" className="rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background">Diagnostic Visibilité Offert</a>
             <WhatsAppButton label="Échangeons" />
           </div>
         </div>
