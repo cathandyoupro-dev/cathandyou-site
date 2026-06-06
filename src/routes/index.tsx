@@ -62,10 +62,16 @@ function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.5),transparent_60%)]" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:px-8 lg:py-28">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-1.5 shadow-sm backdrop-blur">
+          <a
+            href="https://maps.google.com/?q=Roquebrune-sur-Argens,France"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Voir Roquebrune-sur-Argens dans Google Maps"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-1.5 shadow-sm backdrop-blur transition-colors hover:border-[color:var(--turquoise)] hover:bg-background"
+          >
             <MapPin className="h-3.5 w-3.5 text-[color:var(--turquoise)]" />
             <span className="text-xs font-medium text-foreground">Roquebrune-sur-Argens · Var</span>
-          </div>
+          </a>
           <h1 className="mt-6 text-[2.6rem] leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Votre entreprise mérite <span className="italic text-[color:var(--primary)]">d'être vue.</span>
           </h1>
