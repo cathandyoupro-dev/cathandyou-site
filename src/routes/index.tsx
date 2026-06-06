@@ -151,10 +151,6 @@ function PourQui() {
           <p className="mt-4 text-balance text-muted-foreground">
             Commerçant, artisan, thérapeute, restaurateur ou indépendant : votre visibilité est un levier essentiel de développement.
           </p>
-          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[color:var(--turquoise)]/40 bg-[color:var(--cream)] px-4 py-2 text-sm font-medium text-foreground shadow-sm">
-            <MapPin className="h-4 w-4 text-[color:var(--turquoise)]" />
-            Roquebrune-sur-Argens & alentours · Var
-          </div>
         </div>
         <div className="mt-12">
           <Carousel>
