@@ -58,6 +58,20 @@ export function Diagnostic() {
         `Nouveau diagnostic — ${lead.prenom} ${lead.nom}`
       );
       setStep("result");
+      if (typeof window !== "undefined") {
+        const w = window as unknown as { gtag?: (...args: unknown[]) => void; dataLayer?: unknown[] };
+        const payload = {
+          event_category: "engagement",
+          event_label: "diagnostic",
+          activite: lead.activite,
+          objectifs: lead.objectifs.join(", "),
+        };
+        if (typeof w.gtag === "function") {
+          w.gtag("event", "diagnostic_submit", payload);
+        } else if (Array.isArray(w.dataLayer)) {
+          w.dataLayer.push({ event: "diagnostic_submit", ...payload });
+        }
+      }
     } catch {
       setStep("error");
     }
