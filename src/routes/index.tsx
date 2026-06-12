@@ -692,6 +692,10 @@ function Footer() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+              w.gtag?.("event", "whatsapp_click", { event_category: "engagement", event_label: "footer", source: "footer" });
+            }}
             className="inline-flex h-fit items-center gap-2 rounded-full bg-[#25D366] px-5 py-3 font-medium text-white"
           >
             <MessageSquare className="h-4 w-4" /> WhatsApp
